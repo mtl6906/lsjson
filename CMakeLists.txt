@@ -6,6 +6,8 @@ add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
 
 include_directories(include)
 
+link_directories(/usr/local/lib)
+
 aux_source_directory(src/ls/json SRC)
 
 aux_source_directory(sample SAMPLE)
