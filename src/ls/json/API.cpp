@@ -59,6 +59,13 @@ namespace ls
 			root.get(key, &o);
 			return o;
 		}
+
+		double& API::get(Object &root, const string &key, double &o)
+		{
+			Double d(o);
+			root.get(key, &d);
+			return o;
+		}
 	//	object push
 		void API::push(Object &root, const string &key, int o)
 		{
@@ -108,6 +115,12 @@ namespace ls
 		void API::push(Object &root, const string &key, Object &&o)
 		{
 			root.push(key, &o);
+		}
+
+		void API::push(Object &root, const string &key, double o)
+		{
+			Double d(o);
+			root.push(key, &d);
 		}
 	//	object replace
 		void API::replace(Object &root, const string &key, int o)
@@ -159,6 +172,12 @@ namespace ls
 		{
 			root.replace(key, &o);
 		}
+
+		void API::replace(Object &root, const string &key, double o)
+		{
+			Double d(o);
+			root.replace(key, &d);
+		}
 	//	array get
 	  	int& API::get(Array &root, int i, int &o)
 		{
@@ -197,6 +216,13 @@ namespace ls
 		Object& API::get(Array &root, int i, Object &o)
 		{
 			root.get(i, &o);
+			return o;
+		}
+
+		double &API::get(Array &root, int i, double &o)
+		{
+			Double d(o);
+			root.get(i, &d);
 			return o;
 		}
 	//	array push
@@ -249,6 +275,12 @@ namespace ls
 		{
 			root.push(&o);
 		}
+
+		void API::push(Array &root, double o)
+		{
+			Double d(o);
+			root.push(&d);
+		}
 	//	array replace
 		void API::replace(Array &root, int i, int o)
 		{
@@ -298,6 +330,12 @@ namespace ls
 		void API::replace(Array &root, int i, Object &&o)
 		{
 			root.replace(i, &o);
+		}
+
+		void API::replace(Array &root, int i, double o)
+		{
+			Double d(o);
+			root.replace(i, &d);
 		}
 	}
 }

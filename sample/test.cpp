@@ -59,6 +59,7 @@ class Person
 				api.push(_family, family[i].toJson());
 			api.push(json, "family", _family);
 			api.push(json, "skill", skill.toJson());
+			api.push(json, "fee", fee);
 			return json;
 		}
 		void parseFrom(Object &json)
@@ -69,7 +70,8 @@ class Person
 			api.get(json, "age", age);
 			api.get(json, "male", male);
 			api.get(json, "family", _family);
-
+			api.get(json, "fee", fee);
+			
 			family.resize(_family.size());
 			for(int i=0;i<_family.size();++i)
 				family[i].parseFrom(api.get(_family, i, item));
@@ -80,6 +82,7 @@ class Person
 		bool male;
 		vector<Member> family;
 		Skill skill;
+		double fee;
 };
 
 int main()
@@ -102,7 +105,8 @@ int main()
  *		"skill":{
  *			"type": "C++",
  *			"level":1
- *		}
+ *		},
+ *		"fee" : 100.46
  * 	}
  * */
 	Person person;
@@ -121,6 +125,8 @@ int main()
 	
 	person.skill.type = "C++";
 	person.skill.level = 1;
+
+	person.fee = 100.46;
 
 	auto text = person.toJson().toString();
 	cout << "pojo toString text: " << text << endl;

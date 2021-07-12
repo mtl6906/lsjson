@@ -7,7 +7,7 @@
 #include "ls/json/Bool.h"
 #include "ls/json/LongLong.h"
 #include "ls/json/String.h"
-
+#include "ls/json/Double.h"
 
 namespace ls
 {
@@ -21,10 +21,11 @@ namespace ls
                 
                 int& get(Object &root, const std::string &key, int &o);
                 bool& get(Object &root, const std::string &key, bool &o);
-                std::string& get(Object &root, const std::string &key, std::string &o);
+		std::string& get(Object &root, const std::string &key, std::string &o);
                 long long& get(Object &root, const std::string &key, long long &o);
                 Array& get(Object &root, const std::string &key, Array &o);
                 Object& get(Object &root, const std::string &key, Object &o);
+		double& get(Object &root, const std::string &key, double &o);
 
                 void push(Object &root, const std::string &key, int o);
                 void push(Object &root, const std::string &key, bool o);
@@ -35,6 +36,7 @@ namespace ls
                 void push(Object &root, const std::string &key, Array &&o);
                 void push(Object &root, const std::string &key, Object &o);
                 void push(Object &root, const std::string &key, Object &&o);
+		void push(Object &root, const std::string &key, double o);
 
                 void replace(Object &root, const std::string &key, int o);
                 void replace(Object &root, const std::string &key, bool o);
@@ -45,6 +47,7 @@ namespace ls
                 void replace(Object &root, const std::string &key, Array &&o);
                 void replace(Object &root, const std::string &key, Object &o);
                 void replace(Object &root, const std::string &key, Object &&o);
+		void replace(Object &root, const std::string &key, double o);
 
                 int& get(Array &root, int i, int &o);
                 bool& get(Array &root, int i, bool &o);
@@ -52,6 +55,7 @@ namespace ls
                 long long& get(Array &root, int i, long long &o);
                 Array& get(Array &root, int i, Array &o);
                 Object& get(Array &root, int i, Object &o);
+		double& get(Array &root, int i, double &o);
 
                 void push(Array &root, int o);
                 void push(Array &root, bool o);
@@ -62,6 +66,7 @@ namespace ls
                 void push(Array &root, Array &&o);
                 void push(Array &root, Object &o);
                 void push(Array &root, Object &&o);
+		void push(Array &root, double o);
 
                 void replace(Array &root, int i, int o);
                 void replace(Array &root, int i, bool o);
@@ -72,6 +77,7 @@ namespace ls
                 void replace(Array &root, int i, Array &&o);
                 void replace(Array &root, int i, Object &o);
                 void replace(Array &root, int i, Object &&o);
+		void replace(Array &root, int i, double o);
         };
 
 	extern API api;
