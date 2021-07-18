@@ -16,7 +16,7 @@ add_library(lsjson SHARED  ${SRC})
 
 add_executable(testcase ${SAMPLE} ${SRC})
 
-target_link_libraries(testcase lsexception lscstring lsitem lscopyableitem)
+target_link_libraries(testcase lsexception lscstring lsitem lscopyableitem lslogger lstime)
 
 install(TARGETS lsjson DESTINATION lib)
 

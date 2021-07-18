@@ -59,7 +59,7 @@ class Person
 				api.push(_family, family[i].toJson());
 			api.push(json, "family", _family);
 			api.push(json, "skill", skill.toJson());
-			api.push(json, "fee", fee);
+			json.push("fee", &Double(fee).setPrecision(4));
 			return json;
 		}
 		void parseFrom(Object &json)
@@ -126,7 +126,7 @@ int main()
 	person.skill.type = "C++";
 	person.skill.level = 1;
 
-	person.fee = 100.46;
+	person.fee = 100.4678;
 
 	auto text = person.toJson().toString();
 	cout << "pojo toString text: " << text << endl;
@@ -138,7 +138,6 @@ int main()
 	json = api.decode(text);
 	api.replace(json, "age", 23);
 	cout << "json parseFrom Text: " << json.toString() << endl;
-
 
 	Person _person;
 	_person.parseFrom(json);
