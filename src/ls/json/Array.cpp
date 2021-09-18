@@ -19,6 +19,8 @@ namespace ls
 		void Array::parse(const string &text)
 		{
 			data.clear();
+			if(text == "[]")
+				return ;
 			if(text[0] != '[')
 				throw Exception(Exception::LS_EFORMAT);
 			int st = 1, ed = 0, sq = 1, br = 0, qu = 0;
