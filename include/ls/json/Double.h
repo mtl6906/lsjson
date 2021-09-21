@@ -12,11 +12,11 @@ namespace ls
 			public:	
 				Double(double &value);
 				std::string toString() override;
-				Double& setPrecision(int precision);
+				static void setPrecision(int precision);
 			protected:
 				void parse(const std::string &text) override;
 				double &data;
-				int precision;
+				static int precision;
 		};
 	}
 }

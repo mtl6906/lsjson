@@ -11,7 +11,9 @@ namespace ls
 {
 	namespace json
 	{
-		Double::Double(double &value) : data(value), precision(2)
+		int Double::precision = 2;
+
+		Double::Double(double &value) : data(value)
 		{
 		}
 
@@ -34,10 +36,9 @@ namespace ls
 			return result;
 		}
 
-		Double& Double::setPrecision(int _precision)
+		void Double::setPrecision(int _precision)
 		{
 			precision = _precision;
-			return *this;
 		}
 	}
 }

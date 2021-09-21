@@ -59,7 +59,7 @@ class Person
 				api.push(_family, family[i].toJson());
 			api.push(json, "family", _family);
 			api.push(json, "skill", skill.toJson());
-			json.push("fee", &Double(fee).setPrecision(4));
+			api.push(json, "fee", fee);
 			return json;
 		}
 		void parseFrom(Object &json)
@@ -109,6 +109,8 @@ int main()
  *		"fee" : 100.46
  * 	}
  * */
+	Double::setPrecision(4);
+
 	Person person;
 	person.name = "xm";
 	person.age = 22;
