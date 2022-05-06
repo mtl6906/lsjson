@@ -92,7 +92,7 @@ namespace ls
 						break;
 					++ed;
 				//	SKIP
-					if(text[ed] == '"' && text[ed - 1] != '\"')
+					if(text[ed] == '"')
 					{
 						qu = (qu + 1) % 2;
 						continue;
