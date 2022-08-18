@@ -16,13 +16,13 @@ namespace ls
 			data.reserve(n);
 		}
 
-		void Array::parse(const string &text)
+		int Array::parse(const string &text)
 		{
 			data.clear();
 			if(text == "[]")
-				return ;
+				return Exception::LS_OK;
 			if(text[0] != '[')
-				throw Exception(Exception::LS_EFORMAT);
+				return Exception::LS_EFORMAT;
 			int st = 1, ed = 0, sq = 1, br = 0, qu = 0;
 			while(sq)
 			{
@@ -63,20 +63,21 @@ namespace ls
 				}
 			}
 			if(ed >= text.size())
-				throw Exception(Exception::LS_EFORMAT);
+				return Exception::LS_EFORMAT;
 			data.push_back(text.substr(st, ed - st));
 			if(qu || sq || br)
 			{
 				data.clear();
-				throw Exception(Exception::LS_EFORMAT);
+				return Exception::LS_EFORMAT;
 			}
+			return Exception::LS_OK;
 		}
 
 		int Array::copyTo(char *text, int len)
 		{
 			int los = lengthOfString();
 			if(len < los)
-				throw Exception(Exception::LS_EFULL);
+				return Exception::LS_EFULL;
 			text = api.append(text, "[");
 			for(auto &i : data)
 			{
@@ -105,14 +106,14 @@ namespace ls
 			data.push_back(item -> toString());
 		}
 
-		void Array::get(int i, Item *item)
+		int Array::get(int i, Item *item)
 		{
-			item -> parseFrom(data[i]);
+			return item -> parseFrom(data[i]);
 		}
 
-		void Array::replace(int i, Item *item)
+		int Array::replace(int i, Item *item)
 		{
-			item -> parseFrom(data[i]);
+			return item -> parseFrom(data[i]);
 		}
 
 		int Array::size()

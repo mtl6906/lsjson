@@ -16,46 +16,51 @@ namespace ls
         class API
         {
             public:
-                Object decode(const std::string &text);
+                Object decode(int &ec, const std::string &text);
                 std::string encode(Object &root);
-                
-                int& get(Object &root, const std::string &key, int &o);
-                bool& get(Object &root, const std::string &key, bool &o);
-		std::string& get(Object &root, const std::string &key, std::string &o);
-                long long& get(Object &root, const std::string &key, long long &o);
-                Array& get(Object &root, const std::string &key, Array &o);
-                Object& get(Object &root, const std::string &key, Object &o);
-		double& get(Object &root, const std::string &key, double &o);
 
-                void push(Object &root, const std::string &key, int o);
-                void push(Object &root, const std::string &key, bool o);
-                void push(Object &root, const std::string &key, std::string &o);
-                void push(Object &root, const std::string &key, std::string &&o);
-                void push(Object &root, const std::string &key, long long o);
-                void push(Object &root, const std::string &key, Array &o);
-                void push(Object &root, const std::string &key, Array &&o);
-                void push(Object &root, const std::string &key, Object &o);
-                void push(Object &root, const std::string &key, Object &&o);
-		void push(Object &root, const std::string &key, double o);
+		bool isNull(Object &root, const std::string &key);
+		bool isNull(Array &root, int i);
 
-                void replace(Object &root, const std::string &key, int o);
-                void replace(Object &root, const std::string &key, bool o);
-                void replace(Object &root, const std::string &key, std::string &o);
-                void replace(Object &root, const std::string &key, std::string &&o);
-                void replace(Object &root, const std::string &key, long long o);
-                void replace(Object &root, const std::string &key, Array &o);
-                void replace(Object &root, const std::string &key, Array &&o);
-                void replace(Object &root, const std::string &key, Object &o);
-                void replace(Object &root, const std::string &key, Object &&o);
-		void replace(Object &root, const std::string &key, double o);
+                int get(Object &root, const std::string &key, int &o);
+                int get(Object &root, const std::string &key, bool &o);
+		int get(Object &root, const std::string &key, std::string &o);
+                int get(Object &root, const std::string &key, long long &o);
+                int get(Object &root, const std::string &key, Array &o);
+                int get(Object &root, const std::string &key, Object &o);
+		int get(Object &root, const std::string &key, double &o);
 
-                int& get(Array &root, int i, int &o);
-                bool& get(Array &root, int i, bool &o);
-                std::string& get(Array &root, int i, std::string &o);
-                long long& get(Array &root, int i, long long &o);
-                Array& get(Array &root, int i, Array &o);
-                Object& get(Array &root, int i, Object &o);
-		double& get(Array &root, int i, double &o);
+                int push(Object &root, const std::string &key, int o);
+                int push(Object &root, const std::string &key, bool o);
+                int push(Object &root, const std::string &key, std::string &o);
+                int push(Object &root, const std::string &key, std::string &&o);
+                int push(Object &root, const std::string &key, long long o);
+                int push(Object &root, const std::string &key, Array &o);
+                int push(Object &root, const std::string &key, Array &&o);
+                int push(Object &root, const std::string &key, Object &o);
+                int push(Object &root, const std::string &key, Object &&o);
+		int push(Object &root, const std::string &key, double o);
+		int push(Object &root, const std::string &key);
+			
+                int replace(Object &root, const std::string &key, int o);
+                int replace(Object &root, const std::string &key, bool o);
+                int replace(Object &root, const std::string &key, std::string &o);
+                int replace(Object &root, const std::string &key, std::string &&o);
+                int replace(Object &root, const std::string &key, long long o);
+                int replace(Object &root, const std::string &key, Array &o);
+                int replace(Object &root, const std::string &key, Array &&o);
+                int replace(Object &root, const std::string &key, Object &o);
+                int replace(Object &root, const std::string &key, Object &&o);
+		int replace(Object &root, const std::string &key, double o);
+		int replace(Object &root, const std::string &key);
+
+                int get(Array &root, int i, int &o);
+                int get(Array &root, int i, bool &o);
+                int get(Array &root, int i, std::string &o);
+                int get(Array &root, int i, long long &o);
+                int get(Array &root, int i, Array &o);
+               	int get(Array &root, int i, Object &o);
+		int get(Array &root, int i, double &o);
 
                 void push(Array &root, int o);
                 void push(Array &root, bool o);
@@ -67,17 +72,19 @@ namespace ls
                 void push(Array &root, Object &o);
                 void push(Array &root, Object &&o);
 		void push(Array &root, double o);
+		void push(Array &root);
 
-                void replace(Array &root, int i, int o);
-                void replace(Array &root, int i, bool o);
-                void replace(Array &root, int i, std::string &o);
-                void replace(Array &root, int i, std::string &&o);
-                void replace(Array &root, int i, long long o);
-                void replace(Array &root, int i, Array &o);
-                void replace(Array &root, int i, Array &&o);
-                void replace(Array &root, int i, Object &o);
-                void replace(Array &root, int i, Object &&o);
-		void replace(Array &root, int i, double o);
+                int replace(Array &root, int i, int o);
+                int replace(Array &root, int i, bool o);
+                int replace(Array &root, int i, std::string &o);
+                int replace(Array &root, int i, std::string &&o);
+                int replace(Array &root, int i, long long o);
+                int replace(Array &root, int i, Array &o);
+                int replace(Array &root, int i, Array &&o);
+                int replace(Array &root, int i, Object &o);
+                int replace(Array &root, int i, Object &&o);
+		int replace(Array &root, int i, double o);
+		int replace(Array &root, int i);
         };
 
 	extern API api;

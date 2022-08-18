@@ -13,7 +13,7 @@ namespace ls
 				String(std::string &data);
 				std::string toString();
 			protected:
-				void parse(const std::string &text) override;
+				int parse(const std::string &text) override;
 				std::string &data;
 		};
 	}

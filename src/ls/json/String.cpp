@@ -1,5 +1,6 @@
 #include "ls/json/String.h"
 #include "ls/cstring/API.h"
+#include "ls/Exception.h"
 
 using std::string;
 
@@ -14,9 +15,10 @@ namespace ls
 	
 		}
 
-		void String::parse(const string &text)
+		int String::parse(const string &text)
 		{
 			data = std::move(text.substr(1, text.size() - 2));
+			return Exception::LS_OK;
 		}
 
 		string String::toString()

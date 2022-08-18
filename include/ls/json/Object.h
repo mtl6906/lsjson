@@ -12,16 +12,16 @@ namespace ls
 		{
 			public:	
 				Object() = default;
-				void get(const std::string &text, Item *item);
-				void push(const std::string &text, Item *item);
-				void replace(const std::string &key, Item *item);
+				int get(const std::string &text, Item *item);
+				int push(const std::string &text, Item *item);
+				int replace(const std::string &key, Item *item);
 				void clear();
 				OrderedMap<std::string, std::string> &getData();
 				int copyTo(char *text, int len) override;
-				void parseFrom(const std::string &value);
+				int parseFrom(const std::string &value);
 			protected:
 				int lengthOfString() override;
-				void parse(const std::string &text) override;
+				int parse(const std::string &text) override;
 				std::string clearWhiteBlank(const std::string &text);
 				int countWhiteBlank(const std::string &text);
 				OrderedMap<std::string, std::string> om;

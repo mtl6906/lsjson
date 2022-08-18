@@ -13,7 +13,7 @@ namespace ls
 				LongLong(long long &value);
 				std::string toString();
 			protected:
-				void parse(const std::string &text) override;
+				int parse(const std::string &text) override;
 				long long &data;
 		};	
 	}

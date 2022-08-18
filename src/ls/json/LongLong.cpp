@@ -1,4 +1,5 @@
 #include "ls/json/LongLong.h"
+#include "ls/Exception.h"
 #include "cstring"
 
 using std::string;
@@ -12,9 +13,10 @@ namespace ls
 	
 		}
 
-		void LongLong::parse(const string &text)
+		int LongLong::parse(const string &text)
 		{
 			data = stoll(text);
+			return Exception::LS_OK;
 		}
 
 		string LongLong::toString()

@@ -1,6 +1,7 @@
 #include "ls/json/Double.h"
 #include "cmath"
 #include "ls/DefaultLogger.h"
+#include "ls/Exception.h"
 #include "iostream"
 
 using namespace std;
@@ -17,7 +18,7 @@ namespace ls
 		{
 		}
 
-		void Double::parse(const string &text)
+		int Double::parse(const string &text)
 		{
 			for(int i=0;i<text.size();++i)
 				if(text[i] == '.')
@@ -26,6 +27,7 @@ namespace ls
 					break;
 				}
 			data = stod(text);
+			return Exception::LS_OK;
 		}
 		
 		string Double::toString()

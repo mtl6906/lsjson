@@ -74,8 +74,12 @@ class Person
 			
 			family.resize(_family.size());
 			for(int i=0;i<_family.size();++i)
-				family[i].parseFrom(api.get(_family, i, item));
-			skill.parseFrom(api.get(json, "skill", item));
+			{
+				api.get(_family, i, item);
+				family[i].parseFrom(item);
+			}
+			api.get(json, "skill", item);
+			skill.parseFrom(item);
 		}
 		string name;
 		int age;
@@ -137,7 +141,8 @@ int main()
 
 	cout << "empty object: " << json.toString() << endl;
 
-	json = api.decode(text);
+	int ec;
+	json = api.decode(ec, text);
 	api.replace(json, "age", 23);
 	cout << "json parseFrom Text: " << json.toString() << endl;
 
@@ -153,6 +158,17 @@ int main()
 	cout << "long long text: "<< lltext << endl;
 	LongLong(llval).parseFrom(lltext);
 	cout << "long long: " << llval << endl;
+
+	Object oo;
+	api.push(oo, "sb");
+	cout << api.isNull(oo, "sb") << endl;
+	cout << oo.toString() << endl;
+
+	Array aa;
+	api.push(aa);
+	cout << api.isNull(aa, 0) << endl;
+	api.push(oo, "nb", aa);
+	cout << oo.toString() << endl;
 
 	return 0;
 }

@@ -1,5 +1,6 @@
 #include "ls/json/Bool.h"
 #include "ls/cstring/API.h"
+#include "ls/Exception.h"
 
 using std::string;
 
@@ -14,12 +15,13 @@ namespace ls
 
 		}
 		
-		void Bool::parse(const string &text)
+		int Bool::parse(const string &text)
 		{
 			if(!text.compare("false"))
 				data = false;
 			else
 				data = true;
+			return Exception::LS_OK;
 		}
 
 		string Bool::toString()

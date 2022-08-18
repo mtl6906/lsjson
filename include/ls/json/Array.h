@@ -13,13 +13,13 @@ namespace ls
 			public:
 				Array(int n = 0);
 				void push(Item *item);
-				void get(int i, Item *item);
-				void replace(int i, Item *item);
+				int get(int i, Item *item);
+				int replace(int i, Item *item);
 				int size();
 				int copyTo(char *text, int len) override;
 			protected:
 				int lengthOfString() override;
-				void parse(const std::string &text) override;
+				int parse(const std::string &text) override;
 				std::vector<std::string> data;
 		};
 	}

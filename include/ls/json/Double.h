@@ -14,7 +14,7 @@ namespace ls
 				std::string toString() override;
 				static void setPrecision(int precision);
 			protected:
-				void parse(const std::string &text) override;
+				int parse(const std::string &text) override;
 				double &data;
 				static int precision;
 		};

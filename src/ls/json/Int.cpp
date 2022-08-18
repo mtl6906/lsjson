@@ -1,4 +1,5 @@
 #include "ls/json/Int.h"
+#include "ls/Exception.h"
 
 using std::string;
 
@@ -10,9 +11,10 @@ namespace ls
 		{
 		}
 
-		void Int::parse(const string &text)
+		int Int::parse(const string &text)
 		{
 			data = stoi(text);
+			return Exception::LS_OK;
 		}
 		
 		string Int::toString()

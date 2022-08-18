@@ -13,7 +13,7 @@ namespace ls
 				Bool(bool &value);
 				std::string toString() override;
 			protected:
-				void parse(const std::string &value) override;
+				int parse(const std::string &value) override;
 				bool &data;
 		};
 	}

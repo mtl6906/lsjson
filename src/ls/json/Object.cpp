@@ -61,14 +61,16 @@ namespace ls
 			return result;
 		}
 
-		void Object::parseFrom(const string &value)
+		int Object::parseFrom(const string &value)
 		{
 			string result = clearWhiteBlank(value);
-			parse(result);
-			check(result);
+			int ec = parse(result);
+			if(ec < 0)
+				return ec;
+			return check(result);
 		}
 
-		void Object::parse(const string &text)
+		int Object::parse(const string &text)
 		{
 			clear();
 			int st = 1, ed = 0, br = 1, sq = 0, qu = 0;
@@ -77,7 +79,7 @@ namespace ls
 			//	PARSE KEY
 				ed = text.find_first_of(":", ed);
 				if(ed == string::npos)
-					throw Exception(Exception::LS_EFORMAT);
+					return Exception::LS_EFORMAT;
 				string key = text.substr(st + 1, ed - st - 2);
 				st = ed + 1;
 			//	PARSE VALUE
@@ -87,7 +89,7 @@ namespace ls
 					if(br == 0)
 						break;
 					if(ed + 1 >= text.size())
-						throw Exception(Exception::LS_EFORMAT);
+						return Exception::LS_EFORMAT;
 					if(text[ed] == ',' && br == 1 && sq == 0 && qu == 0)
 						break;
 					++ed;
@@ -129,15 +131,16 @@ namespace ls
 			if(qu || br || sq)
 			{
 				clear();
-				throw Exception(Exception::LS_EFORMAT);
+				return Exception::LS_EFORMAT;
 			}
+			return Exception::LS_OK;
 		}
 
 		int Object::copyTo(char *text, int len)
 		{
 			int los = lengthOfString();
 			if(len < los)
-				throw Exception(Exception::LS_EFULL);
+				return Exception::LS_EFULL;
 			text = api.append(text, "{");
 			for(auto &p : om.getData())
 			{
@@ -164,20 +167,23 @@ namespace ls
 			return len;
 		}
 
-		void Object::get(const string &key, Item *value)
+		int Object::get(const string &key, Item *value)
 		{
-			auto text = om.get(key);
-			value -> parseFrom(text);
+			int ec;
+			string text = om.get(ec, key);
+			if(ec < 0)
+				return ec;
+			return value -> parseFrom(text);
 		}
 
-		void Object::push(const string &key, Item *value)
+		int Object::push(const string &key, Item *value)
 		{
-			om.push(key, value -> toString());
+			return om.push(key, value -> toString());
 		}
 
-		void Object::replace(const string &key, Item *value)
+		int Object::replace(const string &key, Item *value)
 		{
-			om.replace(key, value -> toString());
+			return om.replace(key, value -> toString());
 		}
 
 		void Object::clear()
